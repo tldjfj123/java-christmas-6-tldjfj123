@@ -21,8 +21,4 @@ public class Appetizer {
         return appetizers;
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
 }
