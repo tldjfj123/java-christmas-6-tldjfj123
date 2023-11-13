@@ -1,6 +1,5 @@
 package domain.menu;
 
-import domain.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
