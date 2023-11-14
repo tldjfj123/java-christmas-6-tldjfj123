@@ -12,6 +12,7 @@ public class InputOrderView {
     private static final String HEAD_MESSAGE = "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)";
     private static final String MENU_SPLIT_STANDARD = ",";
     private static final String SPLIT_STANDARD = "-";
+    private static final String INTEGER_REGEX = "[1-9][0-9]*";
     private static final int SPLIT_LENGTH = 2;
     private static final int ZERO = 0;
     private static final int ONE = 1;
@@ -45,6 +46,10 @@ public class InputOrderView {
     private void validateRightFormat(String inputValue) {
         String[] parts = inputValue.split(SPLIT_STANDARD);
         if (parts.length != SPLIT_LENGTH) {
+            throw new InvalidOrderInputException();
+        }
+
+        if (!parts[1].matches(INTEGER_REGEX)) {
             throw new InvalidOrderInputException();
         }
     }
