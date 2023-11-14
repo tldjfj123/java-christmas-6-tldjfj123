@@ -8,13 +8,18 @@ public class InputDateView {
     private static final String HEAD_MESSAGE = "12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)";
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 31;
+
     public int getValue() {
         System.out.println(HEAD_MESSAGE);
-        String inputValue = Console.readLine();
-        
-        validate(inputValue);
-        
-        return Integer.parseInt(inputValue);
+        while (true) {
+            try {
+                String inputValue = Console.readLine();
+                validate(inputValue);
+                return Integer.parseInt(inputValue);
+            } catch (InvalidDateInputException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void validate(String inputValue) {
@@ -30,7 +35,7 @@ public class InputDateView {
     }
 
     private void validateNumeric(String inputValue) {
-        if(!inputValue.matches(INTEGER_REGEX)) {
+        if (!inputValue.matches(INTEGER_REGEX)) {
             throw new InvalidDateInputException();
         }
     }
@@ -40,6 +45,6 @@ public class InputDateView {
         if (!(MIN_RANGE <= date && date <= MAX_RANGE)) {
             throw new InvalidDateInputException();
         }
-        
+
     }
 }
