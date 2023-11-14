@@ -16,6 +16,15 @@ public class Appetizer {
         appetizers.add(new MenuItem("시저샐러드", 8_000));
     }
 
+    public boolean isAppetizer(String menuName) {
+        for (MenuItem menuItem : appetizers) {
+            if (menuItem.getName().equals(menuName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<MenuItem> getAppetizers() {
         return appetizers;
     }

@@ -16,6 +16,15 @@ public class Drink {
         drinks.add(new MenuItem("샴페인", 25_000));
     }
 
+    public boolean isDrink(String menuName) {
+        for (MenuItem menuItem : drinks) {
+            if (menuItem.getName().equals(menuName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<MenuItem> getDrinks() {
         return drinks;
     }

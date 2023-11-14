@@ -15,6 +15,15 @@ public class Dessert {
         desserts.add(new MenuItem("아이스크림", 5_000));
     }
 
+    public boolean isDessert(String menuName) {
+        for (MenuItem menuItem : desserts) {
+            if (menuItem.getName().equals(menuName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<MenuItem> getDesserts() {
         return desserts;
     }

@@ -17,6 +17,15 @@ public class Main {
         mains.add(new MenuItem("크리스마스파스타", 25_000));
     }
 
+    public boolean isMain(String menuName) {
+        for (MenuItem menuItem : mains) {
+            if (menuItem.getName().equals(menuName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<MenuItem> getMains() {
         return mains;
     }
