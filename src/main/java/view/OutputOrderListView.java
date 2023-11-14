@@ -5,9 +5,10 @@ import domain.order.OrderList;
 
 public class OutputOrderListView {
     private static final String HEAD_MESSAGE = "<주문 메뉴>";
+    private static final String NEW_LINE = "\n";
     private static final String UNIT = "개";
     public static void printView(OrderList orderList) {
-        System.out.println(HEAD_MESSAGE);
+        System.out.println(NEW_LINE + HEAD_MESSAGE);
         for (Order order : orderList.getOrderList()) {
             String menuName = order.getMenuName();
             int quantity = order.getQuantity();
