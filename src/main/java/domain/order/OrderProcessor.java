@@ -11,11 +11,11 @@ public class OrderProcessor {
     private int orderAmountAfterDiscount;
 
     public OrderProcessor(Date date, OrderList orderList) {
-        calculateOrderAmountBeforeDiscount(date, orderList);
+        calculateOrderAmountBeforeDiscount(orderList);
         calculateOrderAmountAfterDiscount(date, orderList);
     }
 
-    private void calculateOrderAmountBeforeDiscount(Date date, OrderList orderList) {
+    private void calculateOrderAmountBeforeDiscount(OrderList orderList) {
         MenuRepository menuRepository = new MenuRepository();
         for (Order order : orderList.getOrderList()) {
             orderAmountBeforeDiscount +=

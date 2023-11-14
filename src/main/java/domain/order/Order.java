@@ -3,7 +3,7 @@ package domain.order;
 import domain.menu.MenuItem;
 import domain.menu.MenuRepository;
 import exception.InvalidNumberInputException;
-import exception.InvalidOrderException;
+import exception.InvalidOrderInputException;
 
 public class Order {
     private static final int ZERO = 0;
@@ -39,7 +39,7 @@ public class Order {
         }
 
         if (!isExist) {
-            throw new InvalidOrderException();
+            throw new InvalidOrderInputException();
         }
     }
 

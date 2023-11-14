@@ -1,12 +1,11 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
-import domain.menu.MenuRepository;
+import domain.menu.Drink;
 import domain.order.Order;
 import domain.order.OrderList;
-import exception.InvalidOrderException;
+import exception.InvalidOrderInputException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class InputOrderView {
@@ -16,16 +15,25 @@ public class InputOrderView {
     private static final int SPLIT_LENGTH = 2;
     private static final int ZERO = 0;
     private static final int ONE = 1;
+    private static final int MAX_ORDER = 20;
 
     public OrderList getValue() {
         System.out.println(HEAD_MESSAGE);
-        String[] inputValue = Console.readLine().split(MENU_SPLIT_STANDARD);
+        while (true) {
+            try {
+                String[] inputValue = Console.readLine().split(MENU_SPLIT_STANDARD);
 
-        for (String input : inputValue) {
-            validate(input);
+                for (String input : inputValue) {
+                    validate(input);
+                }
+
+                return createOrderListWithInput(inputValue);
+
+
+            } catch (InvalidOrderInputException e) {
+                System.out.println(e.getMessage());
+            }
         }
-
-        return createOrderListWithInput(inputValue);
 
     }
 
@@ -37,24 +45,42 @@ public class InputOrderView {
     private void validateRightFormat(String inputValue) {
         String[] parts = inputValue.split(SPLIT_STANDARD);
         if (parts.length != SPLIT_LENGTH) {
-            throw new InvalidOrderException();
+            throw new InvalidOrderInputException();
         }
     }
 
     private void validateNoWhiteSpace(String inputValue) {
         if (inputValue.contains(" ")) {
-            throw new InvalidOrderException();
+            throw new InvalidOrderInputException();
         }
 
     }
 
     private OrderList createOrderListWithInput(String[] inputValue) {
         List<Order> orderList = new ArrayList<>();
+        Drink drink = new Drink();
+
+        int drinkQuantity = ZERO;
+        int totalQuantity = ZERO;
+
         for (String s : inputValue) {
             String menuName = s.split(SPLIT_STANDARD)[ZERO];
             int quantity = Integer.parseInt(s.split(SPLIT_STANDARD)[ONE]);
 
             orderList.add(new Order(menuName, quantity));
+            totalQuantity += quantity;
+
+            if (drink.isDrink(menuName)) {
+                drinkQuantity += quantity;
+            }
+        }
+
+        if (totalQuantity > MAX_ORDER) {
+            throw new InvalidOrderInputException();
+        }
+
+        if (totalQuantity == drinkQuantity) {
+            throw new InvalidOrderInputException();
         }
 
         return new OrderList(orderList);
