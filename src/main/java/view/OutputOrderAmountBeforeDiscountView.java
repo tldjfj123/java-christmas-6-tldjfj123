@@ -7,10 +7,11 @@ import java.text.DecimalFormat;
 
 public class OutputOrderAmountBeforeDiscountView {
     private static final String HEAD_MESSAGE = "<할인 전 총주문 금액>";
+    private static final String NEW_LINE = "\n";
     private static final String UNIT = "원";
 
     public static void printView(OrderList orderList) {
-        System.out.println(HEAD_MESSAGE);
+        System.out.println(NEW_LINE + HEAD_MESSAGE);
         OrderAmountCalculator orderAmountCalculator = new OrderAmountCalculator(orderList);
         int orderAmountBeforeDiscount = orderAmountCalculator.getOrderAmountBeforeDiscount();
 
