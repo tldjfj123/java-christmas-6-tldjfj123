@@ -1,5 +1,6 @@
 package domain.menu;
 
+import exception.InvalidOrderException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,5 +31,19 @@ public class MenuRepository {
         }
 
         return false;
+    }
+
+    public MenuItem findByName(String menuName) {
+        for (MenuItem menuItem : menuItems) {
+            if (menuItem.getName().equals(menuName)) {
+                return menuItem;
+            }
+        }
+
+        throw new InvalidOrderException();
+    }
+
+    public List<MenuItem> getMenuItems() {
+        return menuItems;
     }
 }

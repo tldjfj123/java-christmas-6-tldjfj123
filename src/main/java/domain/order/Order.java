@@ -1,6 +1,9 @@
 package domain.order;
 
+import domain.menu.MenuItem;
+import domain.menu.MenuRepository;
 import exception.InvalidNumberInputException;
+import exception.InvalidOrderException;
 
 public class Order {
     private static final int ZERO = 0;
@@ -25,8 +28,21 @@ public class Order {
     }
 
     private void validateMenuName(String menuName) {
+        MenuRepository menuRepository = new MenuRepository();
+        boolean isExist = false;
 
+        for (MenuItem menuItem : menuRepository.getMenuItems()) {
+            if (menuItem.getName().equals(menuName)) {
+                isExist = true;
+                break;
+            }
+        }
+
+        if (!isExist) {
+            throw new InvalidOrderException();
+        }
     }
+
 
     public String getMenuName() {
         return menuName;
