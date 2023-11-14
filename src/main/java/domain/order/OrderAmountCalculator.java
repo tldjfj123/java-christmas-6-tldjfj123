@@ -5,7 +5,7 @@ import domain.discount.DiscountCalculator;
 import domain.menu.MenuRepository;
 
 public class OrderAmountCalculator {
-    private int orderAmountBeforeDiscount;
+    private static int orderAmountBeforeDiscount;
 
     public OrderAmountCalculator(OrderList orderList) {
         calculateOrderAmountBeforeDiscount(orderList);
@@ -19,7 +19,11 @@ public class OrderAmountCalculator {
         }
     }
 
-    public int getOrderAmountBeforeDiscount() {
+    public static int getOrderAmountBeforeDiscount() {
         return orderAmountBeforeDiscount;
+    }
+
+    public static void setOrderAmountBeforeDiscount(int orderAmountBeforeDiscount) {
+        OrderAmountCalculator.orderAmountBeforeDiscount = orderAmountBeforeDiscount;
     }
 }

@@ -1,5 +1,7 @@
 package domain.badge;
 
+import domain.order.OrderAmountCalculator;
+
 public class BadgeAssigner {
     private static final int MINIMUM_ORDER = 10_000;
     private static final int STAR_THRESHOLD = 5_000;
@@ -20,7 +22,7 @@ public class BadgeAssigner {
             return new Badge(TREE);
         }
 
-        if (totalBenefitAmount >= STAR_THRESHOLD && totalBenefitAmount >= MINIMUM_ORDER) {
+        if (totalBenefitAmount >= STAR_THRESHOLD && OrderAmountCalculator.getOrderAmountBeforeDiscount() >= MINIMUM_ORDER) {
             return new Badge(STAR);
         }
 
