@@ -1,6 +1,6 @@
 package domain.menu;
 
-import exception.InvalidOrderException;
+import exception.InvalidOrderInputException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class MenuRepository {
             }
         }
 
-        throw new InvalidOrderException();
+        throw new InvalidOrderInputException();
     }
 
     public List<MenuItem> getMenuItems() {
