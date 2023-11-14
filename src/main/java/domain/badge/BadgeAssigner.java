@@ -1,6 +1,7 @@
 package domain.badge;
 
 public class BadgeAssigner {
+    private static final int MINIMUM_ORDER = 10_000;
     private static final int STAR_THRESHOLD = 5_000;
     private static final int TREE_THRESHOLD = 10_000;
     private static final int SANTA_THRESHOLD = 20_000;
@@ -10,7 +11,7 @@ public class BadgeAssigner {
     private static final String NONE = "없음";
 
 
-    public Badge assignBadge(int totalBenefitAmount) {
+    public static Badge assignBadge(int totalBenefitAmount) {
         if (totalBenefitAmount >= SANTA_THRESHOLD) {
             return new Badge(SANTA);
         }
@@ -19,7 +20,7 @@ public class BadgeAssigner {
             return new Badge(TREE);
         }
 
-        if (totalBenefitAmount >= STAR_THRESHOLD) {
+        if (totalBenefitAmount >= STAR_THRESHOLD && totalBenefitAmount >= MINIMUM_ORDER) {
             return new Badge(STAR);
         }
 
