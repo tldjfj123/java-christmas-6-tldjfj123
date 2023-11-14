@@ -2,7 +2,7 @@ package domain.calendar;
 
 import exception.InvalidNumberInputException;
 
-public class Date {
+public class Date implements Comparable<Date> {
     private static final int MIN_DATE = 1;
     private static final int MAX_DATE = 31;
     private int date;
@@ -40,5 +40,10 @@ public class Date {
 
     public boolean isWeekend() {
         return isWeekend;
+    }
+
+    @Override
+    public int compareTo(Date o) {
+        return this.date - o.date;
     }
 }

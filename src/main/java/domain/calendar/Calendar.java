@@ -2,10 +2,11 @@ package domain.calendar;
 
 import exception.InvalidNumberInputException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Calendar {
-    private static final int[] weekdays = {4, 5, 6, 7, 11, 12, 13, 14, 18, 19, 20, 21, 25, 26, 27, 28};
+    private static final int[] weekdays = {3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 17, 18, 19, 20, 21, 24, 25, 26, 27, 28, 31};
     private static final int[] weekends = {1, 2, 8, 9, 15, 16, 22, 23, 29, 30};
     private static final int[] stars = {3, 10, 17, 24, 25, 31};
     private static final int MIN_DATE = 1;
@@ -21,6 +22,7 @@ public class Calendar {
         initWeekends();
         initWeekdays();
         initStar();
+        sortCalendar();
     }
 
     private void initWeekdays() {
@@ -68,6 +70,10 @@ public class Calendar {
         if (!(MIN_DATE <= date && date <= MAX_DATE)) {
             throw new InvalidNumberInputException();
         }
+    }
+
+    public void sortCalendar() {
+        Collections.sort(calendar);
     }
 
 }
