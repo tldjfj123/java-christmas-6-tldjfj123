@@ -3,16 +3,12 @@ package domain.order;
 import domain.calendar.Date;
 import domain.discount.DiscountCalculator;
 import domain.menu.MenuRepository;
-import java.util.ArrayList;
-import java.util.List;
 
-public class OrderProcessor {
+public class OrderAmountCalculator {
     private int orderAmountBeforeDiscount;
-    private int orderAmountAfterDiscount;
 
-    public OrderProcessor(Date date, OrderList orderList) {
+    public OrderAmountCalculator(OrderList orderList) {
         calculateOrderAmountBeforeDiscount(orderList);
-        calculateOrderAmountAfterDiscount(date, orderList);
     }
 
     private void calculateOrderAmountBeforeDiscount(OrderList orderList) {
@@ -23,16 +19,7 @@ public class OrderProcessor {
         }
     }
 
-    private void calculateOrderAmountAfterDiscount(Date date, OrderList orderList) {
-        DiscountCalculator discountCalculator = new DiscountCalculator(date, orderList);
-        orderAmountAfterDiscount = orderAmountBeforeDiscount - discountCalculator.getDiscountAmount();
-    }
-
     public int getOrderAmountBeforeDiscount() {
         return orderAmountBeforeDiscount;
-    }
-
-    public int getOrderAmountAfterDiscount() {
-        return orderAmountAfterDiscount;
     }
 }

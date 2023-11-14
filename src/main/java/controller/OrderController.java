@@ -1,8 +1,6 @@
 package controller;
 
-import domain.menu.MenuRepository;
 import domain.order.OrderList;
-import domain.order.OrderProcessor;
 import view.InputOrderView;
 
 public class OrderController {
