@@ -29,16 +29,8 @@ public class Order {
 
     private void validateMenuName(String menuName) {
         MenuRepository menuRepository = new MenuRepository();
-        boolean isExist = false;
 
-        for (MenuItem menuItem : menuRepository.getMenuItems()) {
-            if (menuItem.getName().equals(menuName)) {
-                isExist = true;
-                break;
-            }
-        }
-
-        if (!isExist) {
+        if (!menuRepository.isExist(menuName)) {
             throw new InvalidOrderInputException();
         }
     }
