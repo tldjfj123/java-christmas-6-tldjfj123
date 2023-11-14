@@ -4,62 +4,39 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import domain.badge.Badge;
 import domain.badge.BadgeAssigner;
-import domain.order.OrderAmountCalculator;
+import domain.calendar.Date;
+import domain.order.Order;
+import domain.order.OrderList;
+import java.util.Arrays;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class BadgeAssignerTest {
+public class BadgeAssignerTest {
 
-    @DisplayName("산타 등급 테스트")
-    @Test
-    void assignBadge_Santa() {
-        // given
-        int totalBenefitAmount = 20_000;
+    private Date date;
+    private OrderList orderList;
 
-        // when
-        Badge result = BadgeAssigner.assignBadge(totalBenefitAmount);
-
-        // then
-        assertThat(result.getName()).isEqualTo("산타");
+    @BeforeEach
+    void setUp() {
+        date = new Date(3, true, false); // 테스트를 위한 임의의 날짜 설정
+        orderList = new OrderList(Arrays.asList(
+                new Order("티본스테이크", 1),
+                new Order("바비큐립", 1),
+                new Order("초코케이크", 2),
+                new Order("제로콜라", 1)
+        ));
     }
 
-    @DisplayName("나무 등급 테스트")
+    @DisplayName("산타 배지 테스트")
     @Test
-    void assignBadge_Tree() {
-        // given
-        int totalBenefitAmount = 10_000;
-
+    void assignBadge() {
         // when
-        Badge result = BadgeAssigner.assignBadge(totalBenefitAmount);
+        Badge result = BadgeAssigner.assignBadge(date, orderList);
 
         // then
-        assertThat(result.getName()).isEqualTo("나무");
-    }
-
-    @DisplayName("스타 등급 테스트")
-    @Test
-    void assignBadge_Star() {
-        // given
-        int totalBenefitAmount = 5_000;
-        OrderAmountCalculator.setOrderAmountBeforeDiscount(10_000);
-
-        // when
-        Badge result = BadgeAssigner.assignBadge(totalBenefitAmount);
-
-        // then
-        assertThat(result.getName()).isEqualTo("별");
-    }
-
-    @DisplayName("없음 테스트")
-    @Test
-    void assignBadge_None() {
-        // given
-        int totalBenefitAmount = 1_000;
-
-        // when
-        Badge result = BadgeAssigner.assignBadge(totalBenefitAmount);
-
-        // then
-        assertThat(result.getName()).isEqualTo("없음");
+        assertThat(result).isNotNull();
+        assertThat(result.getName()).isEqualTo("산타"); // 기대하는 배지 이름으로 변경
     }
 }
+

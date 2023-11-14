@@ -21,7 +21,7 @@ public class PreviewController {
         OutputGiftView.printView(orderList);
         OutputBenefitView.printView(date, orderList);
         OutputOrderAmountAfterDiscountView.printView(date, orderList);
-        OutputBadgeView.printView(orderList);
+        OutputBadgeView.printView(date, orderList);
     }
 
 

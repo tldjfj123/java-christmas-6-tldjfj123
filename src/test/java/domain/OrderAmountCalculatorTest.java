@@ -32,7 +32,7 @@ class OrderAmountCalculatorTest {
         int expectedAmount = 282_000;
 
         // when
-        int result = OrderAmountCalculator.getOrderAmountBeforeDiscount();
+        int result = orderAmountCalculator.getOrderAmountBeforeDiscount();
 
         // then
         assertThat(result).isEqualTo(expectedAmount);
